@@ -1,0 +1,21 @@
+version: '2'
+services:
+  ui:
+    build: ./client
+    ports:
+      - '80:80'
+    depends_on:
+      - api
+  api:
+    build: ./server
+    ports:
+      - '3002:3002'
+  mongodb:
+    image: mongo:latest
+    ports:
+      - 27017:27017
+    volumes:
+    - data:/data/db
+
+volumes:
+  data:
